@@ -3,15 +3,15 @@ import android.app.Application;
 
 public class ArtApplication extends Application {
 
-    private AppComponent appComponent;
+    private ArtComponent artComponent;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        appComponent = DaggerAppComponent.create();
+        artComponent = DaggerArtComponent.create();
     }
 
-    public AppComponent getAppComponent() {
-        return appComponent;
+    public ArtComponent getArtComponent() {
+        return artComponent;
     }
 }
