@@ -2,14 +2,14 @@ package cat.devsofthecoast.artporfolio.dagger;
 
 import javax.inject.Singleton;
 
-import cat.devsofthecoast.artporfolio.ArtworksActivity;
-import cat.devsofthecoast.artporfolio.bases.BaseActivity;
+import cat.devsofthecoast.artporfolio.artworks.view.ArtworksActivity;
+import cat.devsofthecoast.artporfolio.bases.activity.BaseActivity;
+import cat.devsofthecoast.artporfolio.bases.presenter.BasePresenter;
 import dagger.Component;
 
 @Singleton
-@Component(modules = {UseCaseModule.class, MapperModule.class, UtilsModule.class})
+@Component(modules = {UseCaseModule.class, PresenterModule.class, MapperModule.class, UtilsModule.class})
 public interface ArtComponent {
-    void inject(BaseActivity baseActivity);
 
     void inject(ArtworksActivity artworksActivity);
 
