@@ -2,9 +2,13 @@ package cat.devsofthecoast.artporfolio.dagger;
 
 import javax.inject.Singleton;
 
+import cat.devsofthecoast.artporfolio.MainActivity;
 import dagger.Component;
 
-@Component(modules = AppModule.class)
 @Singleton
-public class AppComponent {
+@Component(modules = {UseCaseModule.class, MapperModule.class, UtilsModule.class})
+public interface AppComponent {
+    void inject(MainActivity mainActivity);
 }
+
+
