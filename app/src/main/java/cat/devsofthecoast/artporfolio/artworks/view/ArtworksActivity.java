@@ -6,6 +6,7 @@ import android.widget.TextView;
 import javax.inject.Inject;
 
 import cat.devsofthecoast.artporfolio.R;
+import cat.devsofthecoast.artporfolio.artworks.models.api.SomeShit;
 import cat.devsofthecoast.artporfolio.artworks.presenter.ArtworksPresenter;
 import cat.devsofthecoast.artporfolio.bases.activity.BaseActivity;
 import cat.devsofthecoast.artporfolio.dagger.ArtComponent;
@@ -30,7 +31,7 @@ public class ArtworksActivity extends BaseActivity<ArtworksPresenter> implements
     @Override
     protected void initPresenter() {
         presenter.setView(this);
-//        this.setPresenter ?? PORQUE
+        setPresenter(presenter); // TODO: setPresenter ?? PORQUE, creo que para hacer el detach de observers cuando la activity es eliminada a nivel de base.
     }
 
     @Override
@@ -90,5 +91,10 @@ public class ArtworksActivity extends BaseActivity<ArtworksPresenter> implements
                 vLoading.setVisibility(View.GONE);
             }
         });
+    }
+
+    @Override
+    public void requestSomeShitSuccess(SomeShit someShit) {
+        // no op
     }
 }

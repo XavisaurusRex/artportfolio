@@ -2,6 +2,7 @@ package cat.devsofthecoast.artporfolio.dagger;
 
 import javax.inject.Singleton;
 
+import cat.devsofthecoast.artporfolio.artworks.view.ArtworkDetailActivity;
 import cat.devsofthecoast.artporfolio.artworks.view.ArtworksActivity;
 import cat.devsofthecoast.artporfolio.bases.activity.BaseActivity;
 import cat.devsofthecoast.artporfolio.bases.presenter.BasePresenter;
@@ -13,6 +14,7 @@ public interface ArtComponent {
 
     void inject(ArtworksActivity artworksActivity);
 
+    void inject(ArtworkDetailActivity artworkDetailActivity);
 }
 
 

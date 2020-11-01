@@ -15,6 +15,7 @@ import cat.devsofthecoast.artporfolio.dagger.ArtComponent;
 public abstract class BaseActivity<P extends BasePresenter<? extends BasePresenter.BaseView>> extends AppCompatActivity implements BasePresenter.BaseView, ErrorTrait {
 
     @Inject ErrorHandling errorHandler;
+    private P presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,5 +56,9 @@ public abstract class BaseActivity<P extends BasePresenter<? extends BasePresent
     @Override
     public void showNoConnectionError() {
         errorHandler.showNoConnectionError(getSupportFragmentManager());
+    }
+
+    protected void setPresenter(P presenter) {
+        this.presenter = presenter;
     }
 }
