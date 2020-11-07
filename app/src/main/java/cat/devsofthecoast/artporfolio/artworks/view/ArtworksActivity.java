@@ -21,6 +21,7 @@ public class ArtworksActivity extends BaseActivity<ArtworksPresenter> implements
     private TextView btnConnectionError;
     private TextView btnGenericError;
     private View vLoading;
+    private int successThreadsCount = 0;
 
 
     @Override
@@ -49,7 +50,6 @@ public class ArtworksActivity extends BaseActivity<ArtworksPresenter> implements
 
     @Override
     protected void initViews() {
-        tvMainContent.setText(stringUtils.insultMe());
         btnConnectionError.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,7 +76,8 @@ public class ArtworksActivity extends BaseActivity<ArtworksPresenter> implements
     @Override
     public void requestSomeShitSuccess(String result) {
         Toast.makeText(this, "REQUESTED SOME SHIT SUCCESS \n RESULT:\n " + result, Toast.LENGTH_LONG).show();
-
+        successThreadsCount++;
+        tvMainContent.setText(successThreadsCount + " success threads!");
     }
 
     @Override

@@ -26,7 +26,7 @@ public class RequestArtworksUseCase implements UseCase<String, String> {
         } catch (InterruptedException e) {
             callback.onError(e);
         }
-        callback.onSuccess("Succes Shitty Usecase " + input + " \n from Repo get this: " + repository.insultMe());
+        callback.onSuccess("Succes Shitty Usecase " + input + " \n from Repo get this: " + repository.insultMe() + "\n" + "THREAD NAME: " + Thread.currentThread().getName());
     }
 
     @Override
