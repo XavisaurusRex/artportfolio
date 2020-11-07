@@ -1,18 +1,27 @@
 package cat.devsofthecoast.artporfolio.artworks.view;
+import android.content.Context;
+import android.content.Intent;
 import android.widget.TextView;
 
 import javax.inject.Inject;
 
 import cat.devsofthecoast.artporfolio.R;
-import cat.devsofthecoast.artporfolio.bases.activity.BaseActivity;
+import cat.devsofthecoast.artporfolio.bases.activity.BasePresenterActivity;
+import cat.devsofthecoast.artporfolio.bases.presenter.BasePresenter;
 import cat.devsofthecoast.artporfolio.dagger.ArtComponent;
 import cat.devsofthecoast.artporfolio.utils.StringUtils;
 
-public class ArtworkDetailActivity extends BaseActivity {
+
+@SuppressWarnings("rawtypes")
+public class ArtworkDetailActivity extends BasePresenterActivity {
 
     private TextView tvMainContent;
 
     @Inject StringUtils stringUtils;
+
+    public static Intent getCallingIntent(Context context) {
+        return new Intent(context, ArtworkDetailActivity.class);
+    }
 
     @Override
     protected int getContentLayout() {

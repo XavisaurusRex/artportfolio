@@ -12,7 +12,8 @@ import cat.devsofthecoast.artporfolio.bases.presenter.BasePresenter;
 import cat.devsofthecoast.artporfolio.dagger.ArtApplication;
 import cat.devsofthecoast.artporfolio.dagger.ArtComponent;
 
-public abstract class BaseActivity<P extends BasePresenter<? extends BasePresenter.BaseView>> extends AppCompatActivity implements BasePresenter.BaseView, ErrorTrait {
+@SuppressWarnings("rawtypes")
+public abstract class BasePresenterActivity<P extends BasePresenter<? extends BasePresenter.BaseView>> extends AppCompatActivity implements BasePresenter.BaseView, ErrorTrait {
 
     @Inject ErrorHandling errorHandler;
     private P presenter;
@@ -30,6 +31,13 @@ public abstract class BaseActivity<P extends BasePresenter<? extends BasePresent
 
     protected void initDagger() {
         injectView(((ArtApplication) getApplication()).getArtComponent());
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.destroy();
     }
 
     protected abstract int getContentLayout();

@@ -1,4 +1,6 @@
 package cat.devsofthecoast.artporfolio.bases.usecases;
+import java.util.Objects;
+
 import cat.devsofthecoast.artporfolio.bases.appconfig.AppConfig;
 import cat.devsofthecoast.artporfolio.bases.usecases.executor.AsyncPostExecutor;
 import cat.devsofthecoast.artporfolio.bases.usecases.executor.AsyncThreadExecutor;
@@ -20,6 +22,7 @@ public class UseCaseExecutor<I, R> {
         asyncThreadExecutor.execute(new Runnable() {
             @Override
             public void run() {
+                Objects.requireNonNull(useCase, "A valid instance of UseCase is requiered to run!");
                 useCase.run(input, new Callback<R>() {
                     @Override
                     public void onSuccess(final R result) {

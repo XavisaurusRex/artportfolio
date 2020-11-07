@@ -9,15 +9,27 @@ import cat.devsofthecoast.artporfolio.bases.usecases.UseCaseCallback;
 public class ArtworksPresenterImpl extends BasePresenterImpl<ArtworksPresenter.View> implements ArtworksPresenter {
 
     private final RequestArtworksUseCase requestArtworksUseCase;
+    private UseCaseCallback<String> requestArtworksObserver;
 
     public ArtworksPresenterImpl(RequestArtworksUseCase requestArtworksUseCase) {
         this.requestArtworksUseCase = requestArtworksUseCase;
     }
 
     @Override
-    public void requestSomeShit(String nameToFilter) {
+    public void initUseCaseObservers(@NonNull View view) {
+        // TODO: 07/11/2020 Why need to provide View into observer?
+        requestArtworksObserver = createRequestArtworksObserver();
+    }
+
+    @Override
+    public void destroyUseCaseObservers() {
+        requestArtworksObserver = null;
+    }
+
+    @Override
+    public void requestFilterByName(String nameToFilter) {
         getView().showLoading();
-        requestArtworksUseCase.buildExecutor(createRequestArtworksObserver()).execute(nameToFilter);
+        requestArtworksUseCase.buildExecutor(requestArtworksObserver).execute(nameToFilter);
     }
 
     private UseCaseCallback<String> createRequestArtworksObserver() {

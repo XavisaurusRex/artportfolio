@@ -8,11 +8,11 @@ import javax.inject.Inject;
 
 import cat.devsofthecoast.artporfolio.R;
 import cat.devsofthecoast.artporfolio.artworks.presenter.ArtworksPresenter;
-import cat.devsofthecoast.artporfolio.bases.activity.BaseActivity;
+import cat.devsofthecoast.artporfolio.bases.activity.BasePresenterActivity;
 import cat.devsofthecoast.artporfolio.dagger.ArtComponent;
 import cat.devsofthecoast.artporfolio.utils.StringUtils;
 
-public class ArtworksActivity extends BaseActivity<ArtworksPresenter> implements ArtworksPresenter.View {
+public class ArtworksActivity extends BasePresenterActivity<ArtworksPresenter> implements ArtworksPresenter.View {
 
     @Inject StringUtils stringUtils;
     @Inject ArtworksPresenter presenter;
@@ -53,7 +53,13 @@ public class ArtworksActivity extends BaseActivity<ArtworksPresenter> implements
         btnConnectionError.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.requestSomeShit("REQUESTED FROM BTN CONNECTION ERROR LONG TOUCH");
+                presenter.requestFilterByName("REQUESTED FROM BTN CONNECTION ERROR LONG TOUCH");
+            }
+        });
+        btnGenericError.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(ArtworkDetailActivity.getCallingIntent(ArtworksActivity.this));
             }
         });
     }
