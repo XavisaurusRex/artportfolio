@@ -1,4 +1,6 @@
 package cat.devsofthecoast.artporfolio.artworks.presenter.impl;
+import androidx.annotation.NonNull;
+
 import cat.devsofthecoast.artporfolio.artworks.presenter.ArtworksPresenter;
 import cat.devsofthecoast.artporfolio.artworks.usecase.impl.RequestArtworksUseCase;
 import cat.devsofthecoast.artporfolio.bases.presenter.impl.BasePresenterImpl;
@@ -13,23 +15,16 @@ public class ArtworksPresenterImpl extends BasePresenterImpl<ArtworksPresenter.V
     }
 
     @Override
-    public void requestSomeShit(String nameToShittyRequest) {
+    public void requestSomeShit(String nameToFilter) {
         getView().showLoading();
-        requestArtworksUseCase.buildExecutor(createObserver()).execute(nameToShittyRequest);
+        requestArtworksUseCase.buildExecutor(createRequestArtworksObserver()).execute(nameToFilter);
     }
 
-    private UseCaseCallback<String> createObserver() {
-        return new UseCaseCallback<String>() {
+    private UseCaseCallback<String> createRequestArtworksObserver() {
+        return new ComplexUseCaseCallback<ArtworksPresenter, View, String>(this) {
             @Override
-            public void onSuccess(String result) {
-                getView().hideLoading();
-                getView().requestSomeShitSuccess(result);
-            }
-
-            @Override
-            public void onError(Throwable t) {
-                getView().hideLoading();
-                getView().requestSomeShitFail(t.getMessage());
+            protected void onSuccess(@NonNull View view, String result) {
+                view.requestSomeShitSuccess(result);
             }
         };
     }

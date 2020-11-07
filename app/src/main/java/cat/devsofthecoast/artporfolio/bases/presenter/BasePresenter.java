@@ -2,11 +2,11 @@ package cat.devsofthecoast.artporfolio.bases.presenter;
 import cat.devsofthecoast.artporfolio.bases.ErrorTrait;
 import cat.devsofthecoast.artporfolio.bases.LoadingTrait;
 
-public interface BasePresenter<T extends BasePresenter.BaseView> {
+public interface BasePresenter<V extends BasePresenter.BaseView> {
 
-    void setView(T view);
+    void setView(V view);
 
-    T getView();
+    V getView();
 
     interface BaseView extends ErrorTrait, LoadingTrait {
     }

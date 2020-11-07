@@ -79,10 +79,4 @@ public class ArtworksActivity extends BaseActivity<ArtworksPresenter> implements
         successThreadsCount++;
         tvMainContent.setText(successThreadsCount + " success threads!");
     }
-
-    @Override
-    public void requestSomeShitFail(String errorMessage) {
-        Toast.makeText(this, "AN ERROR HAS OCURRED:\n" + errorMessage, Toast.LENGTH_LONG).show();
-
-    }
 }

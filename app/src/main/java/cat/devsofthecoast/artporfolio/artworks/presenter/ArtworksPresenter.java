@@ -5,13 +5,11 @@ import cat.devsofthecoast.artporfolio.bases.presenter.BasePresenter;
 
 public interface ArtworksPresenter extends BasePresenter<ArtworksPresenter.View> {
 
-    void requestSomeShit(String nameToShittyRequest);
+    void requestSomeShit(String nameToFilter);
 
     interface View extends BasePresenter.BaseView {
 
         void requestSomeShitSuccess(String result);
-
-        void requestSomeShitFail(String errorMessage);
 
     }
 }
