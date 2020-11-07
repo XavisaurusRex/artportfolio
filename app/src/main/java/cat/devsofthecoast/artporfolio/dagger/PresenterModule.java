@@ -1,6 +1,8 @@
 package cat.devsofthecoast.artporfolio.dagger;
 import cat.devsofthecoast.artporfolio.artworks.presenter.ArtworksPresenter;
 import cat.devsofthecoast.artporfolio.artworks.presenter.impl.ArtworksPresenterImpl;
+import cat.devsofthecoast.artporfolio.artworks.usecase.impl.RequestArtworksUseCase;
+import cat.devsofthecoast.artporfolio.bases.appconfig.AppConfig;
 import dagger.Module;
 import dagger.Provides;
 
@@ -8,7 +10,7 @@ import dagger.Provides;
 public class PresenterModule {
 
     @Provides
-    ArtworksPresenter provideArtworksPresenter() {
-        return new ArtworksPresenterImpl();
+    ArtworksPresenter provideArtworksPresenter(RequestArtworksUseCase requestArtworksUseCase) {
+        return new ArtworksPresenterImpl(requestArtworksUseCase);
     }
 }

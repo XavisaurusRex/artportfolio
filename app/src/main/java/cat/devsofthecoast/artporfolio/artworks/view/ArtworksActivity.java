@@ -2,11 +2,11 @@ package cat.devsofthecoast.artporfolio.artworks.view;
 
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import javax.inject.Inject;
 
 import cat.devsofthecoast.artporfolio.R;
-import cat.devsofthecoast.artporfolio.artworks.models.api.SomeShit;
 import cat.devsofthecoast.artporfolio.artworks.presenter.ArtworksPresenter;
 import cat.devsofthecoast.artporfolio.bases.activity.BaseActivity;
 import cat.devsofthecoast.artporfolio.dagger.ArtComponent;
@@ -31,7 +31,7 @@ public class ArtworksActivity extends BaseActivity<ArtworksPresenter> implements
     @Override
     protected void initPresenter() {
         presenter.setView(this);
-        setPresenter(presenter); // TODO: setPresenter ?? PORQUE, creo que para hacer el detach de observers cuando la activity es eliminada a nivel de base.
+        setPresenter(presenter);
     }
 
     @Override
@@ -53,27 +53,7 @@ public class ArtworksActivity extends BaseActivity<ArtworksPresenter> implements
         btnConnectionError.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showNoConnectionError();
-            }
-        });
-        btnConnectionError.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                presenter.requestSomeShit();
-                return false;
-            }
-        });
-        btnGenericError.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showGenericError(stringUtils.insultMe());
-            }
-        });
-        btnGenericError.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                showGenericError(null);
-                return false;
+                presenter.requestSomeShit("REQUESTED FROM BTN CONNECTION ERROR LONG TOUCH");
             }
         });
     }
@@ -94,7 +74,14 @@ public class ArtworksActivity extends BaseActivity<ArtworksPresenter> implements
     }
 
     @Override
-    public void requestSomeShitSuccess(SomeShit someShit) {
-        // no op
+    public void requestSomeShitSuccess(String result) {
+        Toast.makeText(this, "REQUESTED SOME SHIT SUCCESS \n RESULT:\n " + result, Toast.LENGTH_LONG).show();
+
+    }
+
+    @Override
+    public void requestSomeShitFail(String errorMessage) {
+        Toast.makeText(this, "AN ERROR HAS OCURRED:\n" + errorMessage, Toast.LENGTH_LONG).show();
+
     }
 }
