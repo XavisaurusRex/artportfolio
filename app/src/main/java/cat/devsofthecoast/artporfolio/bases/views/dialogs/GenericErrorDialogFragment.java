@@ -23,6 +23,8 @@ public class GenericErrorDialogFragment extends DialogFragment {
         return new GenericErrorDialogFragment(errorMessage);
     }
 
+    public GenericErrorDialogFragment() { }
+
     private GenericErrorDialogFragment(String errorMessage) {
         Bundle args = new Bundle();
         args.putString(EXTRA_ERROR_MESSAGE, errorMessage);
