@@ -1,4 +1,5 @@
 package cat.devsofthecoast.artporfolio.artworks.presenter;
+import cat.devsofthecoast.artporfolio.artworks.model.api.ApiArtwork;
 import cat.devsofthecoast.artporfolio.bases.presenter.BasePresenter;
 
 
@@ -8,7 +9,7 @@ public interface ArtworksPresenter extends BasePresenter<ArtworksPresenter.View>
 
     interface View extends BasePresenter.BaseView {
 
-        void requestSomeShitSuccess(String result);
+        void requestSomeShitSuccess(ApiArtwork result);
 
     }
 }

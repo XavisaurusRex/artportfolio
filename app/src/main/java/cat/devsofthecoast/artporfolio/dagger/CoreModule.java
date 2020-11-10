@@ -2,12 +2,12 @@ package cat.devsofthecoast.artporfolio.dagger;
 
 import javax.inject.Singleton;
 
-import cat.devsofthecoast.artporfolio.bases.appconfig.AppConfig;
-import cat.devsofthecoast.artporfolio.bases.appconfig.AppConfigImpl;
-import cat.devsofthecoast.artporfolio.bases.usecases.executor.AsyncPostExecutor;
-import cat.devsofthecoast.artporfolio.bases.usecases.executor.AsyncThreadExecutor;
-import cat.devsofthecoast.artporfolio.bases.usecases.executor.impl.AsyncPostExecutorImpl;
-import cat.devsofthecoast.artporfolio.bases.usecases.executor.impl.AsyncThreadExecutorImpl;
+import cat.devsofthecoast.artporfolio.bases.models.usecases.appconfig.AppConfig;
+import cat.devsofthecoast.artporfolio.bases.models.usecases.appconfig.AppConfigImpl;
+import cat.devsofthecoast.artporfolio.bases.models.usecases.executor.AsyncPostExecutor;
+import cat.devsofthecoast.artporfolio.bases.models.usecases.executor.AsyncThreadExecutor;
+import cat.devsofthecoast.artporfolio.bases.models.usecases.executor.impl.AsyncPostExecutorImpl;
+import cat.devsofthecoast.artporfolio.bases.models.usecases.executor.impl.AsyncThreadExecutorImpl;
 import dagger.Module;
 import dagger.Provides;
 

@@ -21,7 +21,7 @@ public abstract class BasePresenterImpl<T extends BasePresenter.BaseView> implem
     @CallSuper
     @Override
     public void destroy() {
-        this.view = null;
+//        this.view = null;
         destroyUseCaseObservers();
     }
 }

@@ -1,15 +1,20 @@
 package cat.devsofthecoast.artporfolio.artworks.presenter.impl;
 import androidx.annotation.NonNull;
 
+import java.util.List;
+
+import cat.devsofthecoast.artporfolio.artworks.model.api.ApiArtwork;
+import cat.devsofthecoast.artporfolio.artworks.model.app.Artwork;
 import cat.devsofthecoast.artporfolio.artworks.presenter.ArtworksPresenter;
-import cat.devsofthecoast.artporfolio.artworks.usecase.impl.RequestArtworksUseCase;
+import cat.devsofthecoast.artporfolio.artworks.model.usecase.RequestArtworksUseCase;
 import cat.devsofthecoast.artporfolio.bases.presenter.impl.BasePresenterImpl;
-import cat.devsofthecoast.artporfolio.bases.usecases.UseCaseCallback;
+import cat.devsofthecoast.artporfolio.bases.models.usecases.callback.ComplexUseCaseCallback;
+import cat.devsofthecoast.artporfolio.bases.models.usecases.callback.UseCaseCallback;
 
 public class ArtworksPresenterImpl extends BasePresenterImpl<ArtworksPresenter.View> implements ArtworksPresenter {
 
     private final RequestArtworksUseCase requestArtworksUseCase;
-    private UseCaseCallback<String> requestArtworksObserver;
+    private UseCaseCallback<ApiArtwork> requestArtworksObserver;
 
     public ArtworksPresenterImpl(RequestArtworksUseCase requestArtworksUseCase) {
         this.requestArtworksUseCase = requestArtworksUseCase;
@@ -17,7 +22,6 @@ public class ArtworksPresenterImpl extends BasePresenterImpl<ArtworksPresenter.V
 
     @Override
     public void initUseCaseObservers(@NonNull View view) {
-        // TODO: 07/11/2020 Why need to provide View into observer?
         requestArtworksObserver = createRequestArtworksObserver();
     }
 
@@ -27,15 +31,15 @@ public class ArtworksPresenterImpl extends BasePresenterImpl<ArtworksPresenter.V
     }
 
     @Override
-    public void requestFilterByName(String nameToFilter) {
+    public void requestFilterByName(final String nameToFilter) {
         getView().showLoading();
         requestArtworksUseCase.buildExecutor(requestArtworksObserver).execute(nameToFilter);
     }
 
-    private UseCaseCallback<String> createRequestArtworksObserver() {
-        return new ComplexUseCaseCallback<ArtworksPresenter, View, String>(this) {
+    private UseCaseCallback<ApiArtwork> createRequestArtworksObserver() {
+        return new ComplexUseCaseCallback<ArtworksPresenter, View, ApiArtwork>(this) {
             @Override
-            protected void onSuccess(@NonNull View view, String result) {
+            protected void onSuccess(@NonNull View view, ApiArtwork result) {
                 view.requestSomeShitSuccess(result);
             }
         };

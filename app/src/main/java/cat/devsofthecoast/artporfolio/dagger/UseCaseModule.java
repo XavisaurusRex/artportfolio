@@ -1,8 +1,8 @@
 package cat.devsofthecoast.artporfolio.dagger;
 
-import cat.devsofthecoast.artporfolio.artworks.usecase.impl.RequestArtworksUseCase;
-import cat.devsofthecoast.artporfolio.bases.appconfig.AppConfig;
-import cat.devsofthecoast.artporfolio.utils.StringUtils;
+import cat.devsofthecoast.artporfolio.artworks.model.repository.ArtworkRepository;
+import cat.devsofthecoast.artporfolio.artworks.model.usecase.RequestArtworksUseCase;
+import cat.devsofthecoast.artporfolio.bases.models.usecases.appconfig.AppConfig;
 import dagger.Module;
 import dagger.Provides;
 
@@ -10,8 +10,8 @@ import dagger.Provides;
 public class UseCaseModule {
 
     @Provides
-    public RequestArtworksUseCase provideRequestArtworksUseCase(AppConfig appConfig, StringUtils stringUtils) {
-        return new RequestArtworksUseCase(appConfig, stringUtils);
+    public RequestArtworksUseCase provideRequestArtworksUseCase(AppConfig appConfig, ArtworkRepository artworkRepository) {
+        return new RequestArtworksUseCase(appConfig, artworkRepository);
     }
 
 }

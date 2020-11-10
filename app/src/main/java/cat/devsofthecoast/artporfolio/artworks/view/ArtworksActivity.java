@@ -1,14 +1,18 @@
 package cat.devsofthecoast.artporfolio.artworks.view;
 
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
 import cat.devsofthecoast.artporfolio.R;
+import cat.devsofthecoast.artporfolio.artworks.model.api.ApiArtwork;
+import cat.devsofthecoast.artporfolio.artworks.model.app.Artwork;
 import cat.devsofthecoast.artporfolio.artworks.presenter.ArtworksPresenter;
-import cat.devsofthecoast.artporfolio.bases.activity.BasePresenterActivity;
+import cat.devsofthecoast.artporfolio.bases.views.activity.BasePresenterActivity;
 import cat.devsofthecoast.artporfolio.dagger.ArtComponent;
 import cat.devsofthecoast.artporfolio.utils.StringUtils;
 
@@ -17,12 +21,9 @@ public class ArtworksActivity extends BasePresenterActivity<ArtworksPresenter> i
     @Inject StringUtils stringUtils;
     @Inject ArtworksPresenter presenter;
 
-    private TextView tvMainContent;
+    private LinearLayout llProgressBar;
     private TextView btnConnectionError;
     private TextView btnGenericError;
-    private View vLoading;
-    private int successThreadsCount = 0;
-
 
     @Override
     protected void injectView(ArtComponent artComponent) {
@@ -42,47 +43,29 @@ public class ArtworksActivity extends BasePresenterActivity<ArtworksPresenter> i
 
     @Override
     protected void bindViews() {
-        tvMainContent = findViewById(R.id.tvMainContent);
+        llProgressBar = findViewById(R.id.llProgressBar);
         btnConnectionError = findViewById(R.id.btnConnectionError);
         btnGenericError = findViewById(R.id.btnGenericError);
-        vLoading = findViewById(R.id.vLoading);
     }
 
     @Override
     protected void initViews() {
-        btnConnectionError.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                presenter.requestFilterByName("REQUESTED FROM BTN CONNECTION ERROR LONG TOUCH");
-            }
-        });
-        btnGenericError.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(ArtworkDetailActivity.getCallingIntent(ArtworksActivity.this));
-            }
-        });
+        btnConnectionError.setOnClickListener(v -> presenter.requestFilterByName("REQUESTED FROM BTN CONNECTION ERROR LONG TOUCH"));
+        btnGenericError.setOnClickListener(view -> startActivity(ArtworkDetailActivity.getCallingIntent(ArtworksActivity.this)));
     }
 
     @Override
     public void showLoading() {
-        vLoading.setVisibility(View.VISIBLE);
+        llProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoading() {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                vLoading.setVisibility(View.GONE);
-            }
-        });
+        llProgressBar.setVisibility(View.GONE);
     }
 
     @Override
-    public void requestSomeShitSuccess(String result) {
-        Toast.makeText(this, "REQUESTED SOME SHIT SUCCESS \n RESULT:\n " + result, Toast.LENGTH_LONG).show();
-        successThreadsCount++;
-        tvMainContent.setText(successThreadsCount + " success threads!");
+    public void requestSomeShitSuccess(ApiArtwork result) {
+        showGenericError("Los datos han llegado correctamente -> " + result.getInfo().getTotal());
     }
 }

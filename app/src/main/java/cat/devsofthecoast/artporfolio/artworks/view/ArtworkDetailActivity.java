@@ -6,8 +6,7 @@ import android.widget.TextView;
 import javax.inject.Inject;
 
 import cat.devsofthecoast.artporfolio.R;
-import cat.devsofthecoast.artporfolio.bases.activity.BasePresenterActivity;
-import cat.devsofthecoast.artporfolio.bases.presenter.BasePresenter;
+import cat.devsofthecoast.artporfolio.bases.views.activity.BasePresenterActivity;
 import cat.devsofthecoast.artporfolio.dagger.ArtComponent;
 import cat.devsofthecoast.artporfolio.utils.StringUtils;
 
