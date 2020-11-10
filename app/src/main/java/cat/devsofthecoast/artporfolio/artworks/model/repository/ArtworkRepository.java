@@ -1,13 +1,11 @@
 package cat.devsofthecoast.artporfolio.artworks.model.repository;
-import java.util.List;
 
-import cat.devsofthecoast.artporfolio.artworks.model.api.ApiArtwork;
-import cat.devsofthecoast.artporfolio.artworks.model.app.Artwork;
+import cat.devsofthecoast.artporfolio.artworks.model.api.ApiArtworksRoot;
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ArtworkRepository {
     @GET("artworks")
-    Call<ApiArtwork> getArtworks();
+    Call<ApiArtworksRoot> getArtworks(@Query("q") String searchTerm, @Query("limit") int limitResultsNumber);
 }

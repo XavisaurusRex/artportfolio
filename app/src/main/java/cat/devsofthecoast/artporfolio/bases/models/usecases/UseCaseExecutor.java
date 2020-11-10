@@ -1,4 +1,6 @@
 package cat.devsofthecoast.artporfolio.bases.models.usecases;
+import androidx.annotation.Nullable;
+
 import cat.devsofthecoast.artporfolio.bases.models.usecases.appconfig.AppConfig;
 import cat.devsofthecoast.artporfolio.bases.exceptions.ArtAppException;
 import cat.devsofthecoast.artporfolio.bases.models.usecases.callback.UseCaseCallback;
@@ -18,12 +20,12 @@ public class UseCaseExecutor<I, R> {
         this.useCaseCallback = useCaseCallback;
     }
 
-    public void execute(final I input) {
+    public void execute(@Nullable final I input) {
         asyncThreadExecutor.execute(() -> {
             try {
                 useCase.run(input, new Callback<R>() {
                     @Override
-                    public void onSuccess(final R result) {
+                    public void onSuccess(@Nullable final R result) {
                         handleSuccess(result);
                     }
 
@@ -41,7 +43,7 @@ public class UseCaseExecutor<I, R> {
         });
     }
 
-    private void handleSuccess(final R result) {
+    private void handleSuccess(@Nullable final R result) {
         asyncPostExecutor.execute(() -> useCaseCallback.onSuccess(result));
     }
 

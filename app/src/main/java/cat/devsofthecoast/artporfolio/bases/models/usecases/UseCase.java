@@ -1,4 +1,5 @@
 package cat.devsofthecoast.artporfolio.bases.models.usecases;
+import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import cat.devsofthecoast.artporfolio.bases.models.usecases.callback.UseCaseCallback;
@@ -6,7 +7,7 @@ import cat.devsofthecoast.artporfolio.bases.models.usecases.callback.UseCaseCall
 public interface UseCase<I, R> {
 
     @WorkerThread
-    void run(I input, Callback<R> callback) throws Exception;
+    void run(@Nullable I input, Callback<R> callback) throws Exception;
 
     UseCaseExecutor<I, R> buildExecutor(UseCaseCallback<R> useCaseCallback);
 }

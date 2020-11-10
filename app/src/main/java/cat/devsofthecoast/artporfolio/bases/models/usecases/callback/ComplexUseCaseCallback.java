@@ -1,5 +1,6 @@
 package cat.devsofthecoast.artporfolio.bases.models.usecases.callback;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import cat.devsofthecoast.artporfolio.bases.presenter.BasePresenter;
 
@@ -19,7 +20,7 @@ public abstract class ComplexUseCaseCallback<P extends BasePresenter<V>, V exten
     }
 
     @Override
-    public void onSuccess(R result) {
+    public void onSuccess(@Nullable R result) {
         V view = viewLocator.getView();
         if (view != null) {
             if (autoHideLoading) {
@@ -29,7 +30,7 @@ public abstract class ComplexUseCaseCallback<P extends BasePresenter<V>, V exten
         }
     }
 
-    protected abstract void onSuccess(@NonNull V view, R result);
+    protected abstract void onSuccess(@NonNull V view, @Nullable R result);
 
     @Override
     public void onError(Throwable t) {

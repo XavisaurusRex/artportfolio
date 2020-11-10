@@ -1,10 +1,8 @@
 package cat.devsofthecoast.artporfolio.artworks.presenter.impl;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
-import java.util.List;
-
-import cat.devsofthecoast.artporfolio.artworks.model.api.ApiArtwork;
-import cat.devsofthecoast.artporfolio.artworks.model.app.Artwork;
+import cat.devsofthecoast.artporfolio.artworks.model.api.ApiArtworksRoot;
 import cat.devsofthecoast.artporfolio.artworks.presenter.ArtworksPresenter;
 import cat.devsofthecoast.artporfolio.artworks.model.usecase.RequestArtworksUseCase;
 import cat.devsofthecoast.artporfolio.bases.presenter.impl.BasePresenterImpl;
@@ -14,7 +12,7 @@ import cat.devsofthecoast.artporfolio.bases.models.usecases.callback.UseCaseCall
 public class ArtworksPresenterImpl extends BasePresenterImpl<ArtworksPresenter.View> implements ArtworksPresenter {
 
     private final RequestArtworksUseCase requestArtworksUseCase;
-    private UseCaseCallback<ApiArtwork> requestArtworksObserver;
+    private UseCaseCallback<ApiArtworksRoot> requestArtworksObserver;
 
     public ArtworksPresenterImpl(RequestArtworksUseCase requestArtworksUseCase) {
         this.requestArtworksUseCase = requestArtworksUseCase;
@@ -31,15 +29,15 @@ public class ArtworksPresenterImpl extends BasePresenterImpl<ArtworksPresenter.V
     }
 
     @Override
-    public void requestFilterByName(final String nameToFilter) {
+    public void requestFilterByName(@Nullable final String nameToFilter) {
         getView().showLoading();
         requestArtworksUseCase.buildExecutor(requestArtworksObserver).execute(nameToFilter);
     }
 
-    private UseCaseCallback<ApiArtwork> createRequestArtworksObserver() {
-        return new ComplexUseCaseCallback<ArtworksPresenter, View, ApiArtwork>(this) {
+    private UseCaseCallback<ApiArtworksRoot> createRequestArtworksObserver() {
+        return new ComplexUseCaseCallback<ArtworksPresenter, View, ApiArtworksRoot>(this) {
             @Override
-            protected void onSuccess(@NonNull View view, ApiArtwork result) {
+            protected void onSuccess(@NonNull View view, @Nullable ApiArtworksRoot result) {
                 view.requestSomeShitSuccess(result);
             }
         };

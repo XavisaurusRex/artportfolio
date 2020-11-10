@@ -1,15 +1,17 @@
 package cat.devsofthecoast.artporfolio.artworks.presenter;
-import cat.devsofthecoast.artporfolio.artworks.model.api.ApiArtwork;
+import androidx.annotation.Nullable;
+
+import cat.devsofthecoast.artporfolio.artworks.model.api.ApiArtworksRoot;
 import cat.devsofthecoast.artporfolio.bases.presenter.BasePresenter;
 
 
 public interface ArtworksPresenter extends BasePresenter<ArtworksPresenter.View> {
 
-    void requestFilterByName(String nameToFilter);
+    void requestFilterByName(@Nullable String nameToFilter);
 
     interface View extends BasePresenter.BaseView {
 
-        void requestSomeShitSuccess(ApiArtwork result);
+        void requestSomeShitSuccess(ApiArtworksRoot result);
 
     }
 }

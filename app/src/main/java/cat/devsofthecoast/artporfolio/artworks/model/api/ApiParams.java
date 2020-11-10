@@ -1,0 +1,18 @@
+package cat.devsofthecoast.artporfolio.artworks.model.api;
+import com.google.gson.annotations.SerializedName;
+
+public class ApiParams {
+
+    @SerializedName("q")
+    private String filterTerm;
+
+    @SerializedName("skip")
+    private int offsetIndex;
+
+    @SerializedName("limit")
+    private int limitResultsNumber;
+
+    public String getFilterTerm() {
+        return filterTerm;
+    }
+}

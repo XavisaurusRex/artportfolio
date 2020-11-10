@@ -2,4 +2,5 @@
     <string name="app_name">ArtPortfolio</string>
     <string name="artdialog_dismiss">Volver</string>
     <string name="artdialog_generic_error">Ha ocurrido un error</string>
+    <string name="search">Start your search by term</string>
 </resources>

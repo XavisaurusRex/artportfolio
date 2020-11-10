@@ -1,16 +1,15 @@
 package cat.devsofthecoast.artporfolio.artworks.view;
 
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import java.util.List;
+import androidx.appcompat.widget.AppCompatEditText;
 
 import javax.inject.Inject;
 
 import cat.devsofthecoast.artporfolio.R;
-import cat.devsofthecoast.artporfolio.artworks.model.api.ApiArtwork;
-import cat.devsofthecoast.artporfolio.artworks.model.app.Artwork;
+import cat.devsofthecoast.artporfolio.artworks.model.api.ApiArtworksRoot;
 import cat.devsofthecoast.artporfolio.artworks.presenter.ArtworksPresenter;
 import cat.devsofthecoast.artporfolio.bases.views.activity.BasePresenterActivity;
 import cat.devsofthecoast.artporfolio.dagger.ArtComponent;
@@ -22,8 +21,7 @@ public class ArtworksActivity extends BasePresenterActivity<ArtworksPresenter> i
     @Inject ArtworksPresenter presenter;
 
     private LinearLayout llProgressBar;
-    private TextView btnConnectionError;
-    private TextView btnGenericError;
+    private AppCompatEditText acetSearchByTerm;
 
     @Override
     protected void injectView(ArtComponent artComponent) {
@@ -44,14 +42,18 @@ public class ArtworksActivity extends BasePresenterActivity<ArtworksPresenter> i
     @Override
     protected void bindViews() {
         llProgressBar = findViewById(R.id.llProgressBar);
-        btnConnectionError = findViewById(R.id.btnConnectionError);
-        btnGenericError = findViewById(R.id.btnGenericError);
+        acetSearchByTerm = findViewById(R.id.acetSearchByTerm);
     }
 
     @Override
     protected void initViews() {
-        btnConnectionError.setOnClickListener(v -> presenter.requestFilterByName("REQUESTED FROM BTN CONNECTION ERROR LONG TOUCH"));
-        btnGenericError.setOnClickListener(view -> startActivity(ArtworkDetailActivity.getCallingIntent(ArtworksActivity.this)));
+        acetSearchByTerm.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                presenter.requestFilterByName(v.getText() != null ? v.getText().toString() : null);
+                return true;
+            }
+            return false;
+        });
     }
 
     @Override
@@ -65,7 +67,7 @@ public class ArtworksActivity extends BasePresenterActivity<ArtworksPresenter> i
     }
 
     @Override
-    public void requestSomeShitSuccess(ApiArtwork result) {
+    public void requestSomeShitSuccess(ApiArtworksRoot result) {
         showGenericError("Los datos han llegado correctamente -> " + result.getInfo().getTotal());
     }
 }
