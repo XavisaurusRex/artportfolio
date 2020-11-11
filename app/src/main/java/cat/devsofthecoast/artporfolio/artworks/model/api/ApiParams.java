@@ -15,4 +15,12 @@ public class ApiParams {
     public String getFilterTerm() {
         return filterTerm;
     }
+
+    public int getOffsetIndex() {
+        return offsetIndex;
+    }
+
+    public int getLimitResultsNumber() {
+        return limitResultsNumber;
+    }
 }

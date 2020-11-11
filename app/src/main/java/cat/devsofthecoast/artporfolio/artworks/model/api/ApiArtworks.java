@@ -18,4 +18,23 @@ public final class ApiArtworks {
     @SerializedName("url")
     private String url;
 
+    public int getId() {
+        return id;
+    }
+
+    public String getAccessionNumber() {
+        return accessionNumber;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getOriginalTitle() {
+        return originalTitle;
+    }
+
+    public String getUrl() {
+        return url;
+    }
 }
