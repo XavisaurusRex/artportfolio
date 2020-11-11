@@ -5,4 +5,5 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="dialog_cardview_background">#A7AAC1</color>
     <color name="progressbar_loading_background">#FFFFFF</color>
+    <color name="artwork_item_card_background">#FF6161</color>
 </resources>

@@ -5,6 +5,8 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.widget.AppCompatEditText;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import javax.inject.Inject;
 
@@ -22,6 +24,7 @@ public class ArtworksActivity extends BasePresenterActivity<ArtworksPresenter> i
 
     private LinearLayout llProgressBar;
     private AppCompatEditText acetSearchByTerm;
+    private RecyclerView rcyArtworks;
 
     @Override
     protected void injectView(ArtComponent artComponent) {
@@ -43,10 +46,13 @@ public class ArtworksActivity extends BasePresenterActivity<ArtworksPresenter> i
     protected void bindViews() {
         llProgressBar = findViewById(R.id.llProgressBar);
         acetSearchByTerm = findViewById(R.id.acetSearchByTerm);
+        rcyArtworks = findViewById(R.id.rcyArtworks);
     }
 
     @Override
     protected void initViews() {
+        rcyArtworks.setAdapter(new ArtworksAdapter());
+        rcyArtworks.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         acetSearchByTerm.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 presenter.requestFilterByName(v.getText() != null ? v.getText().toString() : null);
