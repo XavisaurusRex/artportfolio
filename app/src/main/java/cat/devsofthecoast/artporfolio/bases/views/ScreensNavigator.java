@@ -1,6 +1,7 @@
 package cat.devsofthecoast.artporfolio.bases.views;
 import androidx.appcompat.app.AppCompatActivity;
 
+import cat.devsofthecoast.artporfolio.artworks.model.api.ApiArtwork;
 import cat.devsofthecoast.artporfolio.artworks.view.ArtworkDetailActivity;
 
 public class ScreensNavigator {
@@ -15,7 +16,7 @@ public class ScreensNavigator {
         activity.onBackPressed();
     }
 
-    public void toArtworkDetail(String artworkDescription) {
-        ArtworkDetailActivity.start(activity, artworkDescription);
+    public void toArtworkDetail(ApiArtwork artwork) {
+        ArtworkDetailActivity.start(activity, artwork);
     }
 }

@@ -8,45 +8,44 @@ import androidx.annotation.Nullable;
 
 import javax.inject.Inject;
 
-import cat.devsofthecoast.artporfolio.R;
+import cat.devsofthecoast.artporfolio.artworks.model.api.ApiArtwork;
+import cat.devsofthecoast.artporfolio.artworks.view.view.ArtworkDetailsViewMvc;
 import cat.devsofthecoast.artporfolio.bases.views.activity.BaseActivity;
-import cat.devsofthecoast.artporfolio.dependencyinjection.activity.ActivityComponent;
+import cat.devsofthecoast.artporfolio.bases.views.mvc.ViewMvcFactory;
 import cat.devsofthecoast.artporfolio.dependencyinjection.presentantion.PresentationComponent;
-import cat.devsofthecoast.artporfolio.utils.StringUtils;
 
 public class ArtworkDetailActivity extends BaseActivity {
 
     public static final String EXTRA_ARTWORK_DESCRIPTION = "artworkDescription";
     private TextView tvMainContent;
 
-    @Inject StringUtils stringUtils;
+    @Inject ViewMvcFactory viewMvcFactory;
+    private ArtworkDetailsViewMvc viewMvc;
 
-    public static void start(Context context, String artworkDescription) {
+    public static void start(Context context, ApiArtwork artwork) {
         Intent intent = new Intent(context, ArtworkDetailActivity.class);
-        intent.putExtra(EXTRA_ARTWORK_DESCRIPTION, artworkDescription);
+        intent.putExtra(EXTRA_ARTWORK_DESCRIPTION, artwork);
         context.startActivity(intent);
     }
 
     @Override
-    protected int getContentLayout() {
-        return R.layout.activity_artwork_detail;
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        viewMvc = viewMvcFactory.newArtworkDetailsViewMvc(null);
+        setContentView(viewMvc.getRootView());
     }
 
     @Override
-    protected void bindViews() {
-        tvMainContent = findViewById(R.id.tvMainContent);
-    }
-
-    @Override
-    protected void initViews() {
-        tvMainContent.setText(getArtworkDescriptionFromExtras());
+    protected void onStart() {
+        super.onStart();
+        viewMvc.bindArtwork(getArtworkDescriptionFromExtras());
     }
 
     @Nullable
-    private String getArtworkDescriptionFromExtras() {
+    private ApiArtwork getArtworkDescriptionFromExtras() {
         final Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            return bundle.getString(EXTRA_ARTWORK_DESCRIPTION);
+            return (ApiArtwork) bundle.getSerializable(EXTRA_ARTWORK_DESCRIPTION);
         }
         return null;
     }

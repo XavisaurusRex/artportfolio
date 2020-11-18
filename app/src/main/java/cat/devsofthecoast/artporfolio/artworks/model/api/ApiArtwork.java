@@ -1,12 +1,14 @@
 package cat.devsofthecoast.artporfolio.artworks.model.api;
 import com.google.gson.annotations.SerializedName;
 
-public final class ApiArtworks {
+import java.io.Serializable;
+
+public final class ApiArtwork implements Serializable {
 
     @SerializedName("id")
     private int id;
 
-   @SerializedName("accession_number")
+    @SerializedName("accession_number")
     private String accessionNumber;
 
     @SerializedName("title")
