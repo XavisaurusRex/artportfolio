@@ -1,25 +1,30 @@
 package cat.devsofthecoast.artporfolio.artworks.view;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
 
 import javax.inject.Inject;
 
 import cat.devsofthecoast.artporfolio.R;
-import cat.devsofthecoast.artporfolio.bases.views.activity.BasePresenterActivity;
-import cat.devsofthecoast.artporfolio.dagger.ArtComponent;
+import cat.devsofthecoast.artporfolio.bases.views.activity.BaseActivity;
+import cat.devsofthecoast.artporfolio.dependencyinjection.activity.ActivityComponent;
+import cat.devsofthecoast.artporfolio.dependencyinjection.presentantion.PresentationComponent;
 import cat.devsofthecoast.artporfolio.utils.StringUtils;
 
+public class ArtworkDetailActivity extends BaseActivity {
 
-@SuppressWarnings("rawtypes")
-public class ArtworkDetailActivity extends BasePresenterActivity {
-
+    public static final String EXTRA_ARTWORK_DESCRIPTION = "artworkDescription";
     private TextView tvMainContent;
 
     @Inject StringUtils stringUtils;
 
-    public static Intent getCallingIntent(Context context) {
-        return new Intent(context, ArtworkDetailActivity.class);
+    public static void start(Context context, String artworkDescription) {
+        Intent intent = new Intent(context, ArtworkDetailActivity.class);
+        intent.putExtra(EXTRA_ARTWORK_DESCRIPTION, artworkDescription);
+        context.startActivity(intent);
     }
 
     @Override
@@ -34,22 +39,20 @@ public class ArtworkDetailActivity extends BasePresenterActivity {
 
     @Override
     protected void initViews() {
-        // no op
-        tvMainContent.setText(stringUtils.insultMe());
+        tvMainContent.setText(getArtworkDescriptionFromExtras());
+    }
+
+    @Nullable
+    private String getArtworkDescriptionFromExtras() {
+        final Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            return bundle.getString(EXTRA_ARTWORK_DESCRIPTION);
+        }
+        return null;
     }
 
     @Override
-    protected void injectView(ArtComponent artComponent) {
-        artComponent.inject(this);
-    }
-
-    @Override
-    public void showLoading() {
-        // no op
-    }
-
-    @Override
-    public void hideLoading() {
-        // no op
+    protected void injectView(PresentationComponent injector) {
+        injector.inject(this);
     }
 }

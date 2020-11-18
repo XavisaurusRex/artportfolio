@@ -1,5 +1,8 @@
 package cat.devsofthecoast.artporfolio.utils;
 public class StringUtils {
+
+    public StringUtils() { }
+
     private String insult = "Fucking Idiot";
 
     public String insultMe() {

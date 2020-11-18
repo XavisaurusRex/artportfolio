@@ -3,36 +3,30 @@ package cat.devsofthecoast.artporfolio.artworks.view;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatEditText;
 
 import javax.inject.Inject;
 
 import cat.devsofthecoast.artporfolio.R;
 import cat.devsofthecoast.artporfolio.artworks.model.api.ApiArtworksRoot;
-import cat.devsofthecoast.artporfolio.artworks.presenter.ArtworksPresenter;
-import cat.devsofthecoast.artporfolio.bases.views.activity.BasePresenterActivity;
-import cat.devsofthecoast.artporfolio.dagger.ArtComponent;
+import cat.devsofthecoast.artporfolio.artworks.model.usecase.RequestArtworksUseCase;
+import cat.devsofthecoast.artporfolio.bases.models.usecases.callback.UseCaseCallback;
+import cat.devsofthecoast.artporfolio.bases.views.ScreensNavigator;
+import cat.devsofthecoast.artporfolio.bases.views.activity.BaseActivity;
+import cat.devsofthecoast.artporfolio.dependencyinjection.presentantion.PresentationComponent;
 import cat.devsofthecoast.artporfolio.utils.StringUtils;
 
-public class ArtworksActivity extends BasePresenterActivity<ArtworksPresenter> implements ArtworksPresenter.View {
+public class ArtworksActivity extends BaseActivity {
 
     @Inject StringUtils stringUtils;
-    @Inject ArtworksPresenter presenter;
+    @Inject ScreensNavigator screensNavigator;
+    @Inject RequestArtworksUseCase requestArtworksUseCase;
 
     private LinearLayout llProgressBar;
     private AppCompatEditText acetSearchByTerm;
-
-    @Override
-    protected void injectView(ArtComponent artComponent) {
-        artComponent.inject(this);
-    }
-
-    @Override
-    protected void initPresenter() {
-        presenter.setView(this);
-        setPresenter(presenter);
-    }
 
     @Override
     protected int getContentLayout() {
@@ -49,7 +43,19 @@ public class ArtworksActivity extends BasePresenterActivity<ArtworksPresenter> i
     protected void initViews() {
         acetSearchByTerm.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                presenter.requestFilterByName(v.getText() != null ? v.getText().toString() : null);
+//                presenter.requestFilterByName(v.getText() != null ? v.getText().toString() : null);
+                showLoading();
+                requestArtworksUseCase.buildExecutor(new UseCaseCallback<ApiArtworksRoot>() {
+                    @Override
+                    public void onSuccess(@Nullable ApiArtworksRoot result) {
+                        requestSomeShitSuccess(result);
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+                        Toast.makeText(ArtworksActivity.this, "ERROR REQUESTING DATA", Toast.LENGTH_SHORT).show();
+                    }
+                }).execute(v.getText().toString());
                 return true;
             }
             return false;
@@ -57,17 +63,20 @@ public class ArtworksActivity extends BasePresenterActivity<ArtworksPresenter> i
     }
 
     @Override
+    protected void injectView(PresentationComponent injector) {
+        injector.inject(this);
+    }
+
     public void showLoading() {
         llProgressBar.setVisibility(View.VISIBLE);
     }
 
-    @Override
     public void hideLoading() {
         llProgressBar.setVisibility(View.GONE);
     }
 
-    @Override
     public void requestSomeShitSuccess(ApiArtworksRoot result) {
-        showGenericError("Los datos han llegado correctamente -> " + result.getInfo().getTotal());
+        hideLoading();
+        screensNavigator.toArtworkDetail(result.getArtworks().get(0).getTitle());
     }
 }

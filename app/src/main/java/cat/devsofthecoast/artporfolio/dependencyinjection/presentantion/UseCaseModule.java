@@ -1,4 +1,4 @@
-package cat.devsofthecoast.artporfolio.dagger;
+package cat.devsofthecoast.artporfolio.dependencyinjection.presentantion;
 
 import cat.devsofthecoast.artporfolio.artworks.model.repository.ArtworkRepository;
 import cat.devsofthecoast.artporfolio.artworks.model.usecase.RequestArtworksUseCase;
@@ -10,8 +10,8 @@ import dagger.Provides;
 public class UseCaseModule {
 
     @Provides
-    public RequestArtworksUseCase provideRequestArtworksUseCase(AppConfig appConfig, ArtworkRepository artworkRepository) {
-        return new RequestArtworksUseCase(appConfig, artworkRepository);
+    public RequestArtworksUseCase provideRequestArtworksUseCase(AppConfig appConfig, ArtworkRepository repository) {
+        return new RequestArtworksUseCase(appConfig, repository);
     }
 
 }
