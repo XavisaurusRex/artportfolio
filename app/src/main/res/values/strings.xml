@@ -3,4 +3,5 @@
     <string name="artdialog_dismiss">Volver</string>
     <string name="artdialog_generic_error">Ha ocurrido un error</string>
     <string name="search">Start your search by term</string>
+    <string name="drawer_menu_item_artworks_list">Artworks list</string>
 </resources>
