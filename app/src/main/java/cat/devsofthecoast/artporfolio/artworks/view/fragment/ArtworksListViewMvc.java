@@ -1,4 +1,4 @@
-package cat.devsofthecoast.artporfolio.artworks.view;
+package cat.devsofthecoast.artporfolio.artworks.view.fragment;
 import java.util.List;
 
 import cat.devsofthecoast.artporfolio.artworks.model.api.ApiArtwork;

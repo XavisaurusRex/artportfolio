@@ -1,4 +1,4 @@
-package cat.devsofthecoast.artporfolio.artworks.view;
+package cat.devsofthecoast.artporfolio.artworks.view.activity;
 
 import android.widget.FrameLayout;
 

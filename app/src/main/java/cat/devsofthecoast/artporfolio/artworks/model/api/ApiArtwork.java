@@ -17,8 +17,8 @@ public final class ApiArtwork implements Serializable {
     @SerializedName("title_in_original_language")
     private String originalTitle;
 
-    @SerializedName("url")
-    private String url;
+    @SerializedName("images")
+    private ApiImages apiImages;
 
     public int getId() {
         return id;
@@ -36,7 +36,7 @@ public final class ApiArtwork implements Serializable {
         return originalTitle;
     }
 
-    public String getUrl() {
-        return url;
+    public ApiImages getApiImages() {
+        return apiImages;
     }
 }

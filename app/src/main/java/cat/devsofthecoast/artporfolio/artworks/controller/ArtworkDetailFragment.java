@@ -1,4 +1,4 @@
-package cat.devsofthecoast.artporfolio.artworks;
+package cat.devsofthecoast.artporfolio.artworks.controller;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import javax.inject.Inject;
 
 import cat.devsofthecoast.artporfolio.artworks.model.api.ApiArtwork;
-import cat.devsofthecoast.artporfolio.artworks.view.ArtworkDetailsViewMvc;
+import cat.devsofthecoast.artporfolio.artworks.view.fragment.ArtworkDetailsViewMvc;
 import cat.devsofthecoast.artporfolio.common.dependencyinjection.presentantion.PresentationComponent;
 import cat.devsofthecoast.artporfolio.common.screens.controllers.BaseFragment;
 import cat.devsofthecoast.artporfolio.common.screens.navigators.ScreensNavigator;

@@ -1,4 +1,4 @@
-package cat.devsofthecoast.artporfolio.artworks.view;
+package cat.devsofthecoast.artporfolio.artworks.view.activity;
 
 public interface NavDrawerHelper {
 

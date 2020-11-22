@@ -4,7 +4,7 @@ import android.view.LayoutInflater;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import cat.devsofthecoast.artporfolio.artworks.view.NavDrawerHelper;
+import cat.devsofthecoast.artporfolio.artworks.view.activity.NavDrawerHelper;
 import cat.devsofthecoast.artporfolio.common.screens.utils.StringUtils;
 import cat.devsofthecoast.artporfolio.common.screens.views.ViewMvcFactory;
 import dagger.Module;

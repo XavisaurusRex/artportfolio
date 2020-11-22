@@ -4,13 +4,15 @@ import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 
-import cat.devsofthecoast.artporfolio.artworks.view.ArtworkDetailsViewMvc;
-import cat.devsofthecoast.artporfolio.artworks.view.ArtworksListViewMvc;
-import cat.devsofthecoast.artporfolio.artworks.view.NavDrawerHelper;
-import cat.devsofthecoast.artporfolio.artworks.view.NavDrawerViewMvc;
-import cat.devsofthecoast.artporfolio.artworks.view.impl.ArtworkDetailsMvcImpl;
-import cat.devsofthecoast.artporfolio.artworks.view.impl.ArtworksListViewMvcImpl;
-import cat.devsofthecoast.artporfolio.artworks.view.impl.NavDrawerViewMvcImpl;
+import cat.devsofthecoast.artporfolio.artworks.view.activity.NavDrawerHelper;
+import cat.devsofthecoast.artporfolio.artworks.view.activity.NavDrawerViewMvc;
+import cat.devsofthecoast.artporfolio.artworks.view.activity.impl.NavDrawerViewMvcImpl;
+import cat.devsofthecoast.artporfolio.artworks.view.fragment.ArtworkDetailsViewMvc;
+import cat.devsofthecoast.artporfolio.artworks.view.fragment.ArtworksListViewMvc;
+import cat.devsofthecoast.artporfolio.artworks.view.fragment.impl.ArtworkDetailsMvcImpl;
+import cat.devsofthecoast.artporfolio.artworks.view.fragment.impl.ArtworksListViewMvcImpl;
+import cat.devsofthecoast.artporfolio.artworks.view.widgets.adapter.viewholders.ArtworkComplexViewHolder;
+import cat.devsofthecoast.artporfolio.artworks.view.widgets.adapter.viewholders.ArtworkSimplyViewHolder;
 import cat.devsofthecoast.artporfolio.common.screens.dialogs.genericerror.view.GenericErrorViewMvc;
 import cat.devsofthecoast.artporfolio.common.screens.dialogs.genericerror.view.impl.GenericErrorViewMvcImpl;
 import cat.devsofthecoast.artporfolio.common.screens.dialogs.loading.view.LoadingDialogViewMvc;
@@ -48,5 +50,14 @@ public class ViewMvcFactory {
 
     public ToolbarViewMvc newToolbarViewMvc(@Nullable ViewGroup parent) {
         return new ToolbarViewMvc(layoutInflater, parent);
+    }
+
+
+    public ArtworkSimplyViewHolder newArtworkSimplyViewHolder(@Nullable ViewGroup parent) {
+        return new ArtworkSimplyViewHolder(layoutInflater, parent);
+    }
+
+    public ArtworkComplexViewHolder newArtworkComplexViewHolder(@Nullable ViewGroup parent) {
+        return new ArtworkComplexViewHolder(layoutInflater, parent);
     }
 }

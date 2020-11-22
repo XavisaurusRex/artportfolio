@@ -1,4 +1,4 @@
-package cat.devsofthecoast.artporfolio.artworks.view;
+package cat.devsofthecoast.artporfolio.artworks.view.activity;
 
 import android.os.Bundle;
 import android.widget.FrameLayout;
@@ -35,9 +35,9 @@ public class MainActivity extends BaseActivity implements
     private NavDrawerViewMvc mViewMvc;
 
     @Override
-    protected void injectView(PresentationComponent presentationComponent) {
-        super.injectView(presentationComponent);
-        presentationComponent.inject(this);
+    protected void injectView(PresentationComponent injector) {
+        super.injectView(injector);
+        injector.inject(this);
     }
 
     @Override

@@ -1,8 +1,8 @@
 package cat.devsofthecoast.artporfolio.common.dependencyinjection.presentantion;
 
-import cat.devsofthecoast.artporfolio.artworks.ArtworkDetailFragment;
-import cat.devsofthecoast.artporfolio.artworks.ArtworksFragment;
-import cat.devsofthecoast.artporfolio.artworks.view.MainActivity;
+import cat.devsofthecoast.artporfolio.artworks.controller.ArtworkDetailFragment;
+import cat.devsofthecoast.artporfolio.artworks.controller.ArtworksFragment;
+import cat.devsofthecoast.artporfolio.artworks.view.activity.MainActivity;
 import cat.devsofthecoast.artporfolio.common.screens.dialogs.genericerror.GenericErrorDialog;
 import cat.devsofthecoast.artporfolio.common.screens.dialogs.loading.LoadingDialog;
 import dagger.Subcomponent;

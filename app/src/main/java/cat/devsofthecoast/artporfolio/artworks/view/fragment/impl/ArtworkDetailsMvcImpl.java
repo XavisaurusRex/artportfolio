@@ -1,4 +1,4 @@
-package cat.devsofthecoast.artporfolio.artworks.view.impl;
+package cat.devsofthecoast.artporfolio.artworks.view.fragment.impl;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -8,7 +8,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import cat.devsofthecoast.artporfolio.R;
 import cat.devsofthecoast.artporfolio.artworks.model.api.ApiArtwork;
-import cat.devsofthecoast.artporfolio.artworks.view.ArtworkDetailsViewMvc;
+import cat.devsofthecoast.artporfolio.artworks.view.fragment.ArtworkDetailsViewMvc;
 import cat.devsofthecoast.artporfolio.common.screens.toolbar.ToolbarViewMvc;
 import cat.devsofthecoast.artporfolio.common.screens.views.ViewMvcFactory;
 import cat.devsofthecoast.artporfolio.common.screens.views.mvc.impl.BaseObservableViewMvc;
@@ -56,8 +56,7 @@ public class ArtworkDetailsMvcImpl extends BaseObservableViewMvc<ArtworkDetailsV
                 "Id -> " + artwork.getId() + "\n" +
                         "AccessionNumber -> " + artwork.getAccessionNumber() + "\n" +
                         "Title -> " + artwork.getTitle() + "\n" +
-                        "OriginalTitle -> " + artwork.getOriginalTitle() + "\n" +
-                        "Url -> " + artwork.getUrl()
+                        "OriginalTitle -> " + artwork.getOriginalTitle() + "\n"
         );
     }
 

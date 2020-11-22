@@ -1,4 +1,4 @@
-package cat.devsofthecoast.artporfolio.artworks;
+package cat.devsofthecoast.artporfolio.artworks.controller;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,13 +15,12 @@ import javax.inject.Inject;
 import cat.devsofthecoast.artporfolio.artworks.model.api.ApiArtwork;
 import cat.devsofthecoast.artporfolio.artworks.model.api.ApiArtworksRoot;
 import cat.devsofthecoast.artporfolio.artworks.usecase.RequestArtworksUseCase;
-import cat.devsofthecoast.artporfolio.artworks.view.ArtworksListViewMvc;
-import cat.devsofthecoast.artporfolio.common.core.usecases.callback.UseCaseCallback;
+import cat.devsofthecoast.artporfolio.artworks.view.fragment.ArtworksListViewMvc;
+import cat.devsofthecoast.artporfolio.common.dependencyinjection.presentantion.PresentationComponent;
 import cat.devsofthecoast.artporfolio.common.screens.controllers.BaseFragment;
 import cat.devsofthecoast.artporfolio.common.screens.navigators.DialogsNavigator;
 import cat.devsofthecoast.artporfolio.common.screens.navigators.ScreensNavigator;
 import cat.devsofthecoast.artporfolio.common.screens.views.ViewMvcFactory;
-import cat.devsofthecoast.artporfolio.common.dependencyinjection.presentantion.PresentationComponent;
 
 public class ArtworksFragment extends BaseFragment implements ArtworksListViewMvc.Listener, RequestArtworksUseCase.Listener {
 
@@ -52,7 +51,7 @@ public class ArtworksFragment extends BaseFragment implements ArtworksListViewMv
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         requestArtworksUseCase.buildExecutor().execute(null);
-        dialogsNavigator.showLoading("Cargando lista de arte");
+        viewMvc.showProgressIndication();
     }
 
     @Override
@@ -77,7 +76,7 @@ public class ArtworksFragment extends BaseFragment implements ArtworksListViewMv
     @Override
     public void onRequestArtworksUseCaseSuccess(ApiArtworksRoot apiArtworksRoot) {
         viewMvc.bindArtworksList(apiArtworksRoot.getArtworks());
-        dialogsNavigator.hideLoading();
+        viewMvc.hideProgressIndication();
     }
 
     @Override

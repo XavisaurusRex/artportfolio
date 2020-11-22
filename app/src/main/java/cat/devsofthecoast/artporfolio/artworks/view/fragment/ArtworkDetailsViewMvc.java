@@ -1,4 +1,4 @@
-package cat.devsofthecoast.artporfolio.artworks.view;
+package cat.devsofthecoast.artporfolio.artworks.view.fragment;
 
 import cat.devsofthecoast.artporfolio.artworks.model.api.ApiArtwork;
 import cat.devsofthecoast.artporfolio.common.screens.views.mvc.ObservableViewMvc;

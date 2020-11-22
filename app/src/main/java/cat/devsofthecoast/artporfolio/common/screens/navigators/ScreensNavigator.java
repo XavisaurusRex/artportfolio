@@ -1,6 +1,6 @@
 package cat.devsofthecoast.artporfolio.common.screens.navigators;
-import cat.devsofthecoast.artporfolio.artworks.ArtworkDetailFragment;
-import cat.devsofthecoast.artporfolio.artworks.ArtworksFragment;
+import cat.devsofthecoast.artporfolio.artworks.controller.ArtworkDetailFragment;
+import cat.devsofthecoast.artporfolio.artworks.controller.ArtworksFragment;
 import cat.devsofthecoast.artporfolio.artworks.model.api.ApiArtwork;
 import cat.devsofthecoast.artporfolio.common.screens.fragmentframehelper.FragmentFrameHelper;
 
