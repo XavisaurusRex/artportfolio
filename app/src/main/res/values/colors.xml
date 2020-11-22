@@ -5,4 +5,6 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="dialog_cardview_background">#A7AAC1</color>
     <color name="progressbar_loading_background">#FFFFFF</color>
+    <color name="white">#FFFFFF</color>
+    <color name="transparent">#00000000</color>
 </resources>

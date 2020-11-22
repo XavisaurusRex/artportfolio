@@ -2,7 +2,7 @@ package cat.devsofthecoast.artporfolio.artworks.view;
 import java.util.List;
 
 import cat.devsofthecoast.artporfolio.artworks.model.api.ApiArtwork;
-import cat.devsofthecoast.artporfolio.common.screens.views.ObservableViewMvc;
+import cat.devsofthecoast.artporfolio.common.screens.views.mvc.ObservableViewMvc;
 
 public interface ArtworksListViewMvc extends ObservableViewMvc<ArtworksListViewMvc.Listener> {
 

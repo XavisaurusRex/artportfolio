@@ -1,7 +1,11 @@
-package cat.devsofthecoast.artporfolio.common.screens.views;
+package cat.devsofthecoast.artporfolio.common.screens.views.mvc.impl;
+import android.view.View;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+
+import cat.devsofthecoast.artporfolio.common.screens.views.mvc.ObservableViewMvc;
 
 public abstract class BaseObservableViewMvc<ListenerType> extends BaseViewMvc
         implements ObservableViewMvc<ListenerType> {

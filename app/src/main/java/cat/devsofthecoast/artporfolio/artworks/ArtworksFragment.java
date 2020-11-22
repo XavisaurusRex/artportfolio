@@ -18,14 +18,15 @@ import cat.devsofthecoast.artporfolio.artworks.usecase.RequestArtworksUseCase;
 import cat.devsofthecoast.artporfolio.artworks.view.ArtworksListViewMvc;
 import cat.devsofthecoast.artporfolio.common.core.usecases.callback.UseCaseCallback;
 import cat.devsofthecoast.artporfolio.common.screens.controllers.BaseFragment;
-import cat.devsofthecoast.artporfolio.common.screens.screensnavigator.ScreensNavigator;
-import cat.devsofthecoast.artporfolio.common.screens.controllers.BaseActivity;
+import cat.devsofthecoast.artporfolio.common.screens.navigators.DialogsNavigator;
+import cat.devsofthecoast.artporfolio.common.screens.navigators.ScreensNavigator;
 import cat.devsofthecoast.artporfolio.common.screens.views.ViewMvcFactory;
 import cat.devsofthecoast.artporfolio.common.dependencyinjection.presentantion.PresentationComponent;
 
-public class ArtworksFragment extends BaseFragment implements ArtworksListViewMvc.Listener {
+public class ArtworksFragment extends BaseFragment implements ArtworksListViewMvc.Listener, RequestArtworksUseCase.Listener {
 
     @Inject ScreensNavigator screensNavigator;
+    @Inject DialogsNavigator dialogsNavigator;
     @Inject RequestArtworksUseCase requestArtworksUseCase;
     @Inject ViewMvcFactory viewMvcFactory;
 
@@ -48,29 +49,39 @@ public class ArtworksFragment extends BaseFragment implements ArtworksListViewMv
     }
 
     @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        requestArtworksUseCase.buildExecutor().execute(null);
+        dialogsNavigator.showLoading("Cargando lista de arte");
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
         viewMvc.registerListener(this);
-
-        requestArtworksUseCase.buildExecutor(new UseCaseCallback<ApiArtworksRoot>() {
-            @Override
-            public void onSuccess(@Nullable ApiArtworksRoot result) {
-                requestSomeShitSuccess(result);
-            }
-
-            @Override
-            public void onError(Throwable t) {
-                Toast.makeText(ArtworksFragment.this.getContext(), "ERROR REQUESTING DATA", Toast.LENGTH_SHORT).show();
-            }
-        }).execute(null);
+        requestArtworksUseCase.registerListener(this);
     }
 
-    public void requestSomeShitSuccess(ApiArtworksRoot result) {
-        viewMvc.bindArtworksList(result.getArtworks());
+    @Override
+    public void onStop() {
+        super.onStop();
+        viewMvc.unregisterListener(this);
+        requestArtworksUseCase.unregisterListener(this);
     }
 
     @Override
     public void onArtworkClicked(ApiArtwork artwork) {
         screensNavigator.toArtworkDetail(artwork);
+    }
+
+    @Override
+    public void onRequestArtworksUseCaseSuccess(ApiArtworksRoot apiArtworksRoot) {
+        viewMvc.bindArtworksList(apiArtworksRoot.getArtworks());
+        dialogsNavigator.hideLoading();
+    }
+
+    @Override
+    public void onRequestArtworksUseCaseError(Throwable t) {
+        Toast.makeText(ArtworksFragment.this.getContext(), "ERROR REQUESTING DATA", Toast.LENGTH_SHORT).show();
     }
 }

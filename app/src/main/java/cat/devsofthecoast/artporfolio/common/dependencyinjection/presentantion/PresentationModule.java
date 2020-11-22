@@ -2,8 +2,11 @@ package cat.devsofthecoast.artporfolio.common.dependencyinjection.presentantion;
 
 import android.view.LayoutInflater;
 
-import cat.devsofthecoast.artporfolio.common.screens.views.ViewMvcFactory;
+import androidx.appcompat.app.AppCompatActivity;
+
+import cat.devsofthecoast.artporfolio.artworks.view.NavDrawerHelper;
 import cat.devsofthecoast.artporfolio.common.screens.utils.StringUtils;
+import cat.devsofthecoast.artporfolio.common.screens.views.ViewMvcFactory;
 import dagger.Module;
 import dagger.Provides;
 
@@ -11,8 +14,13 @@ import dagger.Provides;
 public class PresentationModule {
 
     @Provides
-    public ViewMvcFactory provideViewMvcFactory(LayoutInflater layoutInflater) {
-        return new ViewMvcFactory(layoutInflater);
+    public ViewMvcFactory provideViewMvcFactory(LayoutInflater layoutInflater, NavDrawerHelper navDrawerHelper) {
+        return new ViewMvcFactory(layoutInflater, navDrawerHelper);
+    }
+
+    @Provides
+    public NavDrawerHelper provideNavDrawerHelper(AppCompatActivity appCompatActivity) {
+        return (NavDrawerHelper) appCompatActivity;
     }
 
     @Provides

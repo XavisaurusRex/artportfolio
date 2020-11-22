@@ -7,7 +7,8 @@ import androidx.fragment.app.FragmentManager;
 
 import cat.devsofthecoast.artporfolio.common.screens.fragmentframehelper.FragmentFrameHelper;
 import cat.devsofthecoast.artporfolio.common.screens.fragmentframehelper.FragmentFrameWrapper;
-import cat.devsofthecoast.artporfolio.common.screens.screensnavigator.ScreensNavigator;
+import cat.devsofthecoast.artporfolio.common.screens.navigators.DialogsNavigator;
+import cat.devsofthecoast.artporfolio.common.screens.navigators.ScreensNavigator;
 import dagger.Module;
 import dagger.Provides;
 
@@ -28,6 +29,11 @@ public class ActivityModule {
     @ActivityScope
     public ScreensNavigator provideScreensNavigator(FragmentFrameHelper fragmentFrameHelper) {
         return new ScreensNavigator(fragmentFrameHelper);
+    }
+
+    @Provides
+    public DialogsNavigator provideDialogsNavigator(FragmentManager fragmentManager) {
+        return new DialogsNavigator(fragmentManager);
     }
 
     @Provides

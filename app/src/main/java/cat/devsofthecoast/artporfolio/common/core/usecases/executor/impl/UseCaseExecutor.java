@@ -1,8 +1,9 @@
-package cat.devsofthecoast.artporfolio.common.core.usecases;
+package cat.devsofthecoast.artporfolio.common.core.usecases.executor.impl;
 import androidx.annotation.Nullable;
 
 import cat.devsofthecoast.artporfolio.common.core.appconfig.AppConfig;
-import cat.devsofthecoast.artporfolio.common.core.exceptions.ArtAppException;
+import cat.devsofthecoast.artporfolio.common.core.usecases.usecase.UseCase;
+import cat.devsofthecoast.artporfolio.common.core.usecases.callback.Callback;
 import cat.devsofthecoast.artporfolio.common.core.usecases.callback.UseCaseCallback;
 import cat.devsofthecoast.artporfolio.common.core.usecases.executor.AsyncPostExecutor;
 import cat.devsofthecoast.artporfolio.common.core.usecases.executor.AsyncThreadExecutor;
@@ -34,9 +35,6 @@ public class UseCaseExecutor<I, R> {
                         handleError(t);
                     }
                 });
-            } catch (ArtAppException exception) {
-                // TODO: 10/11/2020 CHANGE THIS IN FUTURE, handle diferent exceptions
-                handleError(exception);
             } catch (Throwable exception) {
                 handleError(exception);
             }

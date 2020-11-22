@@ -1,47 +1,58 @@
 package cat.devsofthecoast.artporfolio.artworks.usecase;
 import androidx.annotation.Nullable;
+import androidx.annotation.UiThread;
+import androidx.annotation.WorkerThread;
 
 import java.io.IOException;
 
 import cat.devsofthecoast.artporfolio.artworks.model.api.ApiArtworksRoot;
 import cat.devsofthecoast.artporfolio.artworks.repository.ArtworkRepository;
-import cat.devsofthecoast.artporfolio.common.core.exceptions.ArtAppException;
-import cat.devsofthecoast.artporfolio.common.core.usecases.Callback;
-import cat.devsofthecoast.artporfolio.common.core.usecases.UseCase;
-import cat.devsofthecoast.artporfolio.common.core.usecases.UseCaseExecutor;
 import cat.devsofthecoast.artporfolio.common.core.appconfig.AppConfig;
-import cat.devsofthecoast.artporfolio.common.core.usecases.callback.UseCaseCallback;
+import cat.devsofthecoast.artporfolio.common.core.exceptions.ArtAppException;
+import cat.devsofthecoast.artporfolio.common.core.usecases.callback.Callback;
+import cat.devsofthecoast.artporfolio.common.core.usecases.usecase.impl.BaseObservableUseCase;
 import retrofit2.Response;
 
-public class RequestArtworksUseCase implements UseCase<String, ApiArtworksRoot> {
+public class RequestArtworksUseCase extends BaseObservableUseCase<String, ApiArtworksRoot, RequestArtworksUseCase.Listener> {
 
     public static final int LIMIT_RESULTS_NUMBER = 20;
-    private final AppConfig appConfig;
     private final ArtworkRepository repository;
 
     public RequestArtworksUseCase(AppConfig appConfig, ArtworkRepository repository) {
-        this.appConfig = appConfig;
+        super(appConfig);
         this.repository = repository;
     }
 
     @Override
-    public void run(@Nullable String input, @Nullable Callback<ApiArtworksRoot> callback) throws ArtAppException, IOException {
+    @WorkerThread
+    public void run(@Nullable String input, Callback<ApiArtworksRoot> callback) throws IOException {
         Response<ApiArtworksRoot> response = repository.getArtworks(input, LIMIT_RESULTS_NUMBER).execute();
         if (response.isSuccessful()) {
             callback.onSuccess(response.body());
         } else {
-            throw new ArtAppException("Cant parse response");
+            callback.onError(new ArtAppException("Cant parse response"));
         }
     }
 
     @Override
-    public UseCaseExecutor<String, ApiArtworksRoot> buildExecutor(final UseCaseCallback<ApiArtworksRoot> useCaseCallback) {
-        return new Executor(useCaseCallback);
+    @UiThread
+    public void onSuccess(@Nullable ApiArtworksRoot result) {
+        for (Listener listener : getListeners()) {
+            listener.onRequestArtworksUseCaseSuccess(result);
+        }
     }
 
-    private class Executor extends UseCaseExecutor<String, ApiArtworksRoot> {
-        private Executor(UseCaseCallback<ApiArtworksRoot> useCaseCallback) {
-            super(appConfig, RequestArtworksUseCase.this, useCaseCallback);
+    @Override
+    @UiThread
+    public void onError(Throwable t) {
+        for (Listener listener : getListeners()) {
+            listener.onRequestArtworksUseCaseError(t);
         }
+    }
+
+    public interface Listener {
+        void onRequestArtworksUseCaseSuccess(ApiArtworksRoot apiArtworksRoot);
+
+        void onRequestArtworksUseCaseError(Throwable t);
     }
 }

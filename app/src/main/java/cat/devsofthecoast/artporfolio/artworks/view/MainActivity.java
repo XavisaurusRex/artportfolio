@@ -15,7 +15,8 @@ import cat.devsofthecoast.artporfolio.common.screens.controllers.BackPressDispat
 import cat.devsofthecoast.artporfolio.common.screens.controllers.BackPressedListener;
 import cat.devsofthecoast.artporfolio.common.screens.controllers.BaseActivity;
 import cat.devsofthecoast.artporfolio.common.screens.fragmentframehelper.FragmentFrameWrapper;
-import cat.devsofthecoast.artporfolio.common.screens.screensnavigator.ScreensNavigator;
+import cat.devsofthecoast.artporfolio.common.screens.navigators.DialogsNavigator;
+import cat.devsofthecoast.artporfolio.common.screens.navigators.ScreensNavigator;
 import cat.devsofthecoast.artporfolio.common.screens.views.ViewMvcFactory;
 
 public class MainActivity extends BaseActivity implements
@@ -27,8 +28,9 @@ public class MainActivity extends BaseActivity implements
 
     private final Set<BackPressedListener> mBackPressedListeners = new HashSet<>();
 
-    @Inject ScreensNavigator mScreensNavigator;
+    @Inject ScreensNavigator screensNavigator;
     @Inject ViewMvcFactory viewMvcFactory;
+    @Inject DialogsNavigator dialogsNavigator;
 
     private NavDrawerViewMvc mViewMvc;
 
@@ -45,7 +47,7 @@ public class MainActivity extends BaseActivity implements
         setContentView(mViewMvc.getRootView());
 
         if (savedInstanceState == null) {
-            mScreensNavigator.toArtworkList();
+            screensNavigator.toArtworkList();
         }
     }
 
@@ -63,7 +65,7 @@ public class MainActivity extends BaseActivity implements
 
     @Override
     public void onArtworkListClicked() {
-        mScreensNavigator.toArtworkList();
+        screensNavigator.toArtworkList();
     }
 
     @Override

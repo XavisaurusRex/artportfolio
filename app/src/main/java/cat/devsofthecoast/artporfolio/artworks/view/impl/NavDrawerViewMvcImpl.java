@@ -14,7 +14,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import cat.devsofthecoast.artporfolio.R;
 import cat.devsofthecoast.artporfolio.artworks.view.NavDrawerViewMvc;
-import cat.devsofthecoast.artporfolio.common.screens.views.BaseObservableViewMvc;
+import cat.devsofthecoast.artporfolio.common.screens.views.mvc.impl.BaseObservableViewMvc;
 
 public class NavDrawerViewMvcImpl extends BaseObservableViewMvc<NavDrawerViewMvc.Listener>
         implements NavDrawerViewMvc {

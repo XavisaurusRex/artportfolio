@@ -4,4 +4,7 @@
     <string name="artdialog_generic_error">Ha ocurrido un error</string>
     <string name="search">Start your search by term</string>
     <string name="drawer_menu_item_artworks_list">Artworks list</string>
+    <string name="loadingdialog_defaultmessage">Cargando</string>
+    <string name="artwork_list_screen_title">Artworks</string>
+    <string name="artwork_details_screen_title">Artwork Detail</string>
 </resources>

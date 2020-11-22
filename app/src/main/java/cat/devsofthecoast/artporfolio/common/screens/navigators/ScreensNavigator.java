@@ -1,4 +1,4 @@
-package cat.devsofthecoast.artporfolio.common.screens.screensnavigator;
+package cat.devsofthecoast.artporfolio.common.screens.navigators;
 import cat.devsofthecoast.artporfolio.artworks.ArtworkDetailFragment;
 import cat.devsofthecoast.artporfolio.artworks.ArtworksFragment;
 import cat.devsofthecoast.artporfolio.artworks.model.api.ApiArtwork;

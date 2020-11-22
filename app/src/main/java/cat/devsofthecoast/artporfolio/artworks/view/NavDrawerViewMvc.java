@@ -2,7 +2,7 @@ package cat.devsofthecoast.artporfolio.artworks.view;
 
 import android.widget.FrameLayout;
 
-import cat.devsofthecoast.artporfolio.common.screens.views.ObservableViewMvc;
+import cat.devsofthecoast.artporfolio.common.screens.views.mvc.ObservableViewMvc;
 
 public interface NavDrawerViewMvc extends ObservableViewMvc<NavDrawerViewMvc.Listener> {
 

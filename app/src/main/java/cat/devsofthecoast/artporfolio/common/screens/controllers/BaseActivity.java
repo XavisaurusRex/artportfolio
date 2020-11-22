@@ -15,8 +15,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     @CallSuper
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         initDagger();
+        super.onCreate(savedInstanceState);
     }
 
     private void initDagger() {

@@ -1,10 +1,13 @@
-package cat.devsofthecoast.artporfolio.common.screens.views;
+package cat.devsofthecoast.artporfolio.common.screens.views.mvc.impl;
 import android.content.Context;
 import android.view.View;
 
 import androidx.annotation.StringRes;
 
+import cat.devsofthecoast.artporfolio.common.screens.views.mvc.ViewMvc;
+
 public abstract class BaseViewMvc implements ViewMvc {
+
     private View rootView;
 
     @Override
