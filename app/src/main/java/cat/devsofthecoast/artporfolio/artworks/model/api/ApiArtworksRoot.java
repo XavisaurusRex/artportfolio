@@ -9,14 +9,14 @@ public final class ApiArtworksRoot {
     private ApiInfo info;
 
     @SerializedName("data")
-    private List<ApiArtworks> artworks;
+    private List<ApiArtwork> artworks;
 
 
     public ApiInfo getInfo() {
         return info;
     }
 
-    public List<ApiArtworks> getArtworks() {
+    public List<ApiArtwork> getArtworks() {
         return artworks;
     }
 

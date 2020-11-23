@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="5dp"
+    android:layout_marginVertical="5dp"
+    android:clickable="true"
+    android:elevation="4dp"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardBackgroundColor="@color/rcy_item_simplyartwork"
+    app:cardCornerRadius="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="HELLO"
+            android:textAppearance="@style/Widget.MaterialComponents.TextView"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvWorld"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="WORLD"
+            android:textAppearance="@style/Widget.MaterialComponents.TextView"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvCounter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="1"
+            android:textAppearance="@style/Widget.MaterialComponents.TextView"
+            android:textSize="20sp" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
