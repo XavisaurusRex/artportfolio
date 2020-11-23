@@ -1,5 +1,6 @@
 package cat.devsofthecoast.artporfolio.artworks.view.widgets.adapter.viewholders;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -33,9 +34,12 @@ public class ArtworkSimplyViewHolder extends ArtworksViewHolder<ArtworkSimplyDat
         tvWorld.setText("NO IMAGE");
         tvCounter.setText(String.valueOf(position));
 
-        tvWorld.setOnClickListener(v -> {
-            for (ArtworksAdapter.Listener listener : listeners) {
-                listener.onArtworkClicked(item.getApiArtwork());
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (ArtworksAdapter.Listener listener : listeners) {
+                    listener.onArtworkClicked(item.getApiArtwork());
+                }
             }
         });
     }

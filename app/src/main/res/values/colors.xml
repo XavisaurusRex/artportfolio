@@ -7,4 +7,7 @@
     <color name="progressbar_loading_background">#FFFFFF</color>
     <color name="white">#FFFFFF</color>
     <color name="transparent">#00000000</color>
+    <color name="rcy_item_complexartwork">#D8E7FF</color>
+    <color name="viewholder_complexartwork_imagecounter_bg_color">#B0FFFFFF</color>
+    <color name="rcy_item_simplyartwork">#B7FFD1</color>
 </resources>

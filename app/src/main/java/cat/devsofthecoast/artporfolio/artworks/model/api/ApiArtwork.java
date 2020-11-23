@@ -2,6 +2,7 @@ package cat.devsofthecoast.artporfolio.artworks.model.api;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.List;
 
 public final class ApiArtwork implements Serializable {
 
@@ -19,6 +20,10 @@ public final class ApiArtwork implements Serializable {
 
     @SerializedName("images")
     private ApiImages apiImages;
+
+    @SerializedName("creators")
+    private List<ApiCreator> apiCreators;
+
 
     public int getId() {
         return id;
@@ -38,5 +43,9 @@ public final class ApiArtwork implements Serializable {
 
     public ApiImages getApiImages() {
         return apiImages;
+    }
+
+    public List<ApiCreator> getApiCreators() {
+        return apiCreators;
     }
 }
