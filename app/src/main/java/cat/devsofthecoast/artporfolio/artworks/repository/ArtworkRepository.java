@@ -6,6 +6,11 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface ArtworkRepository {
-    @GET("artworks")
-    Call<ApiArtworksRoot> getArtworks(@Query("q") String searchTerm, @Query("limit") int limitResultsNumber);
+
+    @GET("object")
+    Call<ApiArtworksRoot> getArtworks(
+            @Query("q") String searchTerm,
+            @Query("size") int limitResultsNumber,
+            @Query("classification") int... classificationId);
+
 }

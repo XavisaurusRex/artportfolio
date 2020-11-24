@@ -67,9 +67,7 @@ public class ArtworksListViewMvcImpl extends BaseObservableViewMvc<ArtworksListV
     public void bindArtworksList(List<ApiArtwork> artworks) {
         List<ArtworkBaseDataWrapper> dataWrappers = new ArrayList<>();
         for (ApiArtwork apiArtwork : artworks) {
-            if (apiArtwork.getApiImages() != null &&
-                    apiArtwork.getApiImages().getApiWeb() != null &&
-                    !TextUtils.isEmpty(apiArtwork.getApiImages().getApiWeb().getImageUrl())) {
+            if (!TextUtils.isEmpty(apiArtwork.getPrimaryimageurl())) {
                 dataWrappers.add(new ArtworkComplexDataWrapper(apiArtwork));
             } else {
                 dataWrappers.add(new ArtworkSimplyDataWrapper(apiArtwork));

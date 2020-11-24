@@ -2,8 +2,8 @@ package cat.devsofthecoast.artporfolio.common.dependencyinjection;
 import android.app.Application;
 
 import cat.devsofthecoast.artporfolio.common.dependencyinjection.app.AppComponent;
-import cat.devsofthecoast.artporfolio.common.dependencyinjection.app.AppModule;
 import cat.devsofthecoast.artporfolio.common.dependencyinjection.app.DaggerAppComponent;
+import cat.devsofthecoast.artporfolio.common.dependencyinjection.app.modules.AppModule;
 
 public class ArtApplication extends Application {
 

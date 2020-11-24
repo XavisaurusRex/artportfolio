@@ -8,7 +8,7 @@ public final class ApiArtworksRoot {
     @SerializedName("info")
     private ApiInfo info;
 
-    @SerializedName("data")
+    @SerializedName("records")
     private List<ApiArtwork> artworks;
 
 

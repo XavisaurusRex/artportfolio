@@ -15,7 +15,8 @@ import retrofit2.Response;
 
 public class RequestArtworksUseCase extends BaseObservableUseCase<String, ApiArtworksRoot, RequestArtworksUseCase.Listener> {
 
-    public static final int LIMIT_RESULTS_NUMBER = 20;
+    public static final int LIMIT_RESULTS_NUMBER = 10;
+    public static final int ARTWORKS_CLASSIFICATION_ID = 26; // classification name is "classification": "Paintings"
     private final ArtworkRepository repository;
 
     public RequestArtworksUseCase(AppConfig appConfig, ArtworkRepository repository) {
@@ -26,7 +27,7 @@ public class RequestArtworksUseCase extends BaseObservableUseCase<String, ApiArt
     @Override
     @WorkerThread
     public void run(@Nullable String input, Callback<ApiArtworksRoot> callback) throws IOException {
-        Response<ApiArtworksRoot> response = repository.getArtworks(input, LIMIT_RESULTS_NUMBER).execute();
+        Response<ApiArtworksRoot> response = repository.getArtworks(input, LIMIT_RESULTS_NUMBER, ARTWORKS_CLASSIFICATION_ID).execute();
         if (response.isSuccessful()) {
             callback.onSuccess(response.body());
         } else {

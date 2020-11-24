@@ -34,12 +34,9 @@ public class ArtworkSimplyViewHolder extends ArtworksViewHolder<ArtworkSimplyDat
         tvWorld.setText("NO IMAGE");
         tvCounter.setText(String.valueOf(position));
 
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for (ArtworksAdapter.Listener listener : listeners) {
-                    listener.onArtworkClicked(item.getApiArtwork());
-                }
+        itemView.setOnClickListener(v -> {
+            for (ArtworksAdapter.Listener listener : listeners) {
+                listener.onArtworkClicked(item.getApiArtwork());
             }
         });
     }

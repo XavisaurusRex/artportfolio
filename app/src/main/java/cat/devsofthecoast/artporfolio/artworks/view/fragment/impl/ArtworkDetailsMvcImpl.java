@@ -1,4 +1,5 @@
 package cat.devsofthecoast.artporfolio.artworks.view.fragment.impl;
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -50,14 +51,25 @@ public class ArtworkDetailsMvcImpl extends BaseObservableViewMvc<ArtworkDetailsV
         });
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void bindArtwork(ApiArtwork artwork) {
         tvMainContent.setText(
-                "Id -> " + artwork.getId() + "\n" +
-                        "AccessionNumber -> " + artwork.getAccessionNumber() + "\n" +
-                        "Title -> " + artwork.getTitle() + "\n" +
-                        "OriginalTitle -> " + artwork.getOriginalTitle() + "\n"
-        );
+                "accessionyear -> " + artwork.getAccessionyear() + "\n" +
+                "technique -> " + artwork.getTechnique() + "\n" +
+                "mediacount -> " + artwork.getMediacount() + "\n" +
+                "totalpageviews -> " + artwork.getTotalpageviews() + "\n" +
+                "groupcount -> " + artwork.getGroupcount() + "\n" +
+                "people -> " + artwork.getPeople() + "\n" +
+                "objectnumber -> " + artwork.getObjectnumber() + "\n" +
+                "colorcount -> " + artwork.getColorcount() + "\n" +
+                "lastupdate -> " + artwork.getLastupdate() + "\n" +
+                "rank -> " + artwork.getRank() + "\n" +
+                "imagecount -> " + artwork.getImagecount() + "\n" +
+                "description -> " + artwork.getDescription() + "\n" +
+                "dateoflastpageview -> " + artwork.getDateoflastpageview() + "\n" +
+                "dateoffirstpageview -> " + artwork.getDateoffirstpageview() + "\n" +
+                "primaryimageurl -> " + artwork.getPrimaryimageurl() + "\n");
     }
 
     @Override

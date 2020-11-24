@@ -3,17 +3,31 @@ import com.google.gson.annotations.SerializedName;
 
 public final class ApiInfo {
 
-    @SerializedName("total")
-    private int total;
+    @SerializedName("totalrecordsperquery")
+    private int totalrecordsperquery;
 
-    @SerializedName("parameters")
-    private ApiParams params;
+    @SerializedName("totalrecords")
+    private int totalrecords;
 
-    public int getTotal() {
-        return total;
+    @SerializedName("pages")
+    private int pages;
+
+    @SerializedName("page")
+    private int page;
+
+    public int getTotalrecordsperquery() {
+        return totalrecordsperquery;
     }
 
-    public ApiParams getParams() {
-        return params;
+    public int getTotalrecords() {
+        return totalrecords;
+    }
+
+    public int getPages() {
+        return pages;
+    }
+
+    public int getPage() {
+        return page;
     }
 }
